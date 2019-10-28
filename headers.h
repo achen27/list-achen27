@@ -17,4 +17,4 @@ struct node * free_list(struct node *n);
 //Remove the node containing data from the list pointed to by front.
 // If data is not in the list, nothing is changed.
 // Returns a pointer to the beginning of the list.
-struct node * remove(struct node *front, int data);
+struct node * remove_node(struct node *front, int data);

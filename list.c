@@ -1,52 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 #include "headers.h"
 
 void print_list(struct node *n){
-  printf("(")
-  struct node x = n;
-  while (x->next != NULL){
-    printf("%d, ", n->i);
-    x = x->next;
+  printf("[");
+  while (n != NULL){
+    printf(" %d ", n->i);
+    n = n->next;
   }
-  printf("%d)", n->i);
+  printf("]\n");
 }
 
 struct node * insert_front(struct node *n, int x){
-  struct node new = malloc(12);
-  new.i = x;
-  new.next = n;
-  return *new;
+  struct node *new = malloc(sizeof(struct node));
+  new->i = x;
+  new->next = n;
+  return new;
 }
 
 struct node * free_list(struct node *n){
-  struct node x = n;
-  while (x->next != NULL){
-    y = x;
-    x = x->next;
-    free(y);
+  while (n != NULL){
+    printf("Freeing Node: %d\n", n->i);
+    struct node *t = n;
+    n = n->next;
+    free(t);
   }
-  return n;
+  printf("Free at Last\n");
+  return NULL;
 }
 
-struct node * remove(struct node *front, int data){
-  struct node x = front;
-  struct node y = front.next;
+struct node * remove_node(struct node *front, int data){
+  struct node *x = front;
+  struct node *y = front->next;
 
-  while (y->next != NULL){
-    if (x.i == data) {
-      f = x.next;
-      free(x);
-      return f;
-    } else if (y.i == data){
-      x.next = y->next
+  if(x->i == data){
+    free(x);
+    return y;
+  }
+
+  while (y != NULL){
+    if (y->i == data) {
+      x->next = y->next;
       free(y);
       return front;
     }
     x = y;
     y = y->next;
   }
-  return n;
+  return front;
 }
